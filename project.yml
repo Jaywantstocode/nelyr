@@ -16,7 +16,7 @@ packages:
     from: 0.9.0
   KeyboardShortcuts:
     url: https://github.com/sindresorhus/KeyboardShortcuts.git
-    from: 3.0.1
+    exactVersion: 2.4.0
 targets:
   NelyrCore:
     type: framework

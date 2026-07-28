@@ -1,5 +1,5 @@
 {
-  "originHash" : "573eb885d4e824ea55426c9dad01dbbb528db04aff7ee3c62cddd1b23ad73e86",
+  "originHash" : "2461790cfdf596589009395a73aa2714af7ad577d8874c41f4ed01dfad88ad48",
   "pins" : [
     {
       "identity" : "argmax-oss-swift",
@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/sindresorhus/KeyboardShortcuts.git",
       "state" : {
-        "revision" : "49c3fc04ea827f816df67843bfcc57286b47ff06",
-        "version" : "3.0.1"
+        "revision" : "1aef85578fdd4f9eaeeb8d53b7b4fc31bf08fe27",
+        "version" : "2.4.0"
       }
     },
     {

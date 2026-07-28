@@ -11,7 +11,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/argmaxinc/argmax-oss-swift.git", from: "0.9.0"),
-        .package(url: "https://github.com/sindresorhus/KeyboardShortcuts.git", from: "3.0.1")
+        .package(url: "https://github.com/sindresorhus/KeyboardShortcuts.git", exact: "2.4.0")
     ],
     targets: [
         .target(

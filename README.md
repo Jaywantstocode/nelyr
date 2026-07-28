@@ -64,7 +64,7 @@ See [the product design](docs/nelyr-product-design.md) and
 
 - macOS 14 or newer
 - Apple Silicon
-- Xcode 16 or newer
+- Xcode 16.3 or newer (Swift 6.1)
 - [XcodeGen](https://github.com/yonaskolb/XcodeGen) for the app and widget build
 - [Ollama](https://ollama.com/) for optional local note enrichment
 - An Obsidian vault
