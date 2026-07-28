@@ -1,0 +1,22 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="surface" x1="180" y1="124" x2="830" y2="924" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#20232C"/>
+      <stop offset="1" stop-color="#0B0D12"/>
+    </linearGradient>
+    <linearGradient id="signal" x1="178" y1="512" x2="862" y2="512" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7C5CFF"/>
+      <stop offset="1" stop-color="#4DE8FF"/>
+    </linearGradient>
+    <filter id="glow" x="100" y="275" width="830" height="490" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="16"/>
+    </filter>
+  </defs>
+  <rect x="56" y="56" width="912" height="912" rx="220" fill="url(#surface)"/>
+  <path d="M178 524H232L267 570L306 459L348 604L389 524H430V334L654 674V359L782 574H836"
+        stroke="url(#signal)" stroke-opacity=".28" stroke-width="72"
+        stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+  <path d="M178 524H232L267 570L306 459L348 604L389 524H430V334L654 674V359L782 574H836"
+        stroke="url(#signal)" stroke-width="48" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="836" cy="574" r="26" fill="#4DE8FF"/>
+</svg>

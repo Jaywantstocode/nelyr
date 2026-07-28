@@ -1,0 +1,144 @@
+name: Nelyr
+options:
+  deploymentTarget:
+    macOS: "14.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    ARCHS: arm64
+    DEVELOPMENT_TEAM: FA2MKZLU45
+    CODE_SIGN_STYLE: Automatic
+    MACOSX_DEPLOYMENT_TARGET: "14.0"
+packages:
+  ArgmaxOSS:
+    url: https://github.com/argmaxinc/argmax-oss-swift.git
+    from: 0.9.0
+  KeyboardShortcuts:
+    url: https://github.com/sindresorhus/KeyboardShortcuts.git
+    from: 3.0.1
+targets:
+  NelyrCore:
+    type: framework
+    platform: macOS
+    sources:
+      - path: Sources/NelyrCore
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: app.nelyr.core
+        PRODUCT_NAME: NelyrCore
+  NelyrCommunity:
+    type: framework
+    platform: macOS
+    sources:
+      - path: Sources/NelyrCommunity
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: app.nelyr.community
+        PRODUCT_NAME: NelyrCommunity
+    dependencies:
+      - target: NelyrCore
+  Nelyr:
+    type: application
+    platform: macOS
+    sources:
+      - path: Sources/DailyDesk
+      - path: assets/AppIcon.png
+        buildPhase: resources
+    info:
+      path: assets/Info.plist
+      properties:
+        CFBundleDisplayName: Nelyr
+        CFBundleIconFile: AppIcon.png
+        CFBundleShortVersionString: "3.1"
+        CFBundleVersion: "23"
+        CFBundleURLTypes:
+          - CFBundleURLName: ooo.cavin.dailydesk
+            CFBundleURLSchemes:
+              - nelyr
+              - dailydesk
+        LSMinimumSystemVersion: "$(MACOSX_DEPLOYMENT_TARGET)"
+        NSMicrophoneUsageDescription: Nelyr uses the microphone only to transcribe your voice locally on this Mac.
+        NSPrincipalClass: NSApplication
+        NSServices:
+          - NSMenuItem:
+              default: Save Selection to Nelyr
+            NSMessage: saveSelectionToDailyDesk
+            NSPortName: Nelyr
+            NSSendTypes:
+              - public.utf8-plain-text
+              - NSStringPboardType
+            NSRequiredContext: {}
+            NSServiceDescription: Save the selected text directly to your Nelyr Obsidian vault.
+          - NSMenuItem:
+              default: Add Note and Save to Nelyr
+            NSMessage: reviewSelectionInDailyDesk
+            NSPortName: Nelyr
+            NSSendTypes:
+              - public.utf8-plain-text
+              - NSStringPboardType
+            NSRequiredContext: {}
+            NSServiceDescription: Open the selected text in Quick Capture so you can add context before saving.
+    entitlements:
+      path: config/DailyDesk.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - FA2MKZLU45.ooo.cavin.dailydesk.shared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: ooo.cavin.dailydesk
+        PRODUCT_NAME: Nelyr
+        INFOPLIST_FILE: assets/Info.plist
+        CODE_SIGN_ENTITLEMENTS: config/DailyDesk.entitlements
+        ASSETCATALOG_COMPILER_APPICON_NAME: ""
+    dependencies:
+      - target: NelyrCore
+        embed: true
+      - target: NelyrCommunity
+        embed: true
+      - package: ArgmaxOSS
+        product: WhisperKit
+      - package: KeyboardShortcuts
+        product: KeyboardShortcuts
+      - target: NelyrWidget
+        embed: true
+  NelyrWidget:
+    type: app-extension
+    platform: macOS
+    sources:
+      - path: Sources/DailyDeskWidget
+      - path: Sources/DailyDesk/WidgetSnapshot.swift
+      - path: Sources/DailyDesk/NelyrBrand.swift
+    info:
+      path: config/WidgetInfo.plist
+      properties:
+        CFBundleDisplayName: Nelyr Widget
+        CFBundleShortVersionString: "3.1"
+        CFBundleVersion: "23"
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    entitlements:
+      path: config/DailyDeskWidget.entitlements
+      properties:
+        com.apple.security.app-sandbox: true
+        com.apple.security.application-groups:
+          - FA2MKZLU45.ooo.cavin.dailydesk.shared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: ooo.cavin.dailydesk.widget
+        PRODUCT_NAME: NelyrWidget
+        INFOPLIST_FILE: config/WidgetInfo.plist
+        CODE_SIGN_ENTITLEMENTS: config/DailyDeskWidget.entitlements
+        APPLICATION_EXTENSION_API_ONLY: YES
+schemes:
+  Nelyr:
+    build:
+      targets:
+        Nelyr: all
+        NelyrWidget: all
+    run:
+      config: Debug
+    archive:
+      config: Release

@@ -1,0 +1,38 @@
+# macOS
+.DS_Store
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# Xcode
+DerivedData/
+*.xcodeproj/
+*.xcuserstate
+xcuserdata/
+*.xccheckout
+*.xcscmblueprint
+
+# Local build products and caches
+outputs/
+work/
+
+# Local signing and environment overrides
+*.p12
+*.cer
+*.p8
+*.pem
+*.key
+*.provisionprofile
+*.mobileprovision
+.env
+.env.*
+*.xcconfig.local
+
+# Design scratch files; release masters live in assets/Brand/
+assets/NelyrIconConcept.png
+
+# Pro brand masters are distributed separately from the MIT Community source.
+assets/Brand/NelyrProMaster.png
+assets/NelyrProIcon.png
+assets/NelyrProMark.svg
