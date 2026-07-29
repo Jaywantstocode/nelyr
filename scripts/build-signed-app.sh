@@ -6,6 +6,14 @@ DERIVED_DATA="$PROJECT_DIR/work/DerivedData"
 OUTPUT_DIR="$PROJECT_DIR/outputs"
 BUILT_APP="$DERIVED_DATA/Build/Products/Release/Nelyr.app"
 OUTPUT_APP="$OUTPUT_DIR/Nelyr.app"
+BUILD_SETTINGS=()
+
+if [[ -n "${NELYR_DEVELOPMENT_TEAM:-}" ]]; then
+    BUILD_SETTINGS+=(DEVELOPMENT_TEAM="$NELYR_DEVELOPMENT_TEAM")
+fi
+if [[ -n "${NELYR_SIGN_IDENTITY:-}" ]]; then
+    BUILD_SETTINGS+=(CODE_SIGN_IDENTITY="$NELYR_SIGN_IDENTITY")
+fi
 
 cd "$PROJECT_DIR"
 xcodegen generate
@@ -16,7 +24,8 @@ xcodebuild \
     -configuration Release \
     -derivedDataPath "$DERIVED_DATA" \
     -allowProvisioningUpdates \
-    build
+    build \
+    "${BUILD_SETTINGS[@]}"
 
 # Replace the generated bundle instead of merging with a previous build. Merging
 # can leave stale files behind and invalidate the bundle's resource seal.

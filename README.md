@@ -103,6 +103,10 @@ The repository contains the maintainer's public signing identifiers so the
 release configuration is reproducible. It does not contain a certificate,
 private key, provisioning profile, model, vault, or other secret.
 
+To create a drag-to-Applications DMG, see
+[the release guide](docs/releasing.md). Public DMGs must be signed with a
+Developer ID Application certificate and notarized by Apple.
+
 ## First run
 
 1. Move Nelyr to `/Applications` and open it.

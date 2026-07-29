@@ -9,6 +9,7 @@ settings:
     ARCHS: arm64
     DEVELOPMENT_TEAM: FA2MKZLU45
     CODE_SIGN_STYLE: Automatic
+    ENABLE_HARDENED_RUNTIME: YES
     MACOSX_DEPLOYMENT_TARGET: "14.0"
 packages:
   ArgmaxOSS:
@@ -53,7 +54,7 @@ targets:
         CFBundleDisplayName: Nelyr
         CFBundleIconFile: AppIcon.png
         CFBundleShortVersionString: "3.1"
-        CFBundleVersion: "23"
+        CFBundleVersion: "24"
         CFBundleURLTypes:
           - CFBundleURLName: ooo.cavin.dailydesk
             CFBundleURLSchemes:
@@ -116,7 +117,7 @@ targets:
       properties:
         CFBundleDisplayName: Nelyr Widget
         CFBundleShortVersionString: "3.1"
-        CFBundleVersion: "23"
+        CFBundleVersion: "24"
         NSExtension:
           NSExtensionPointIdentifier: com.apple.widgetkit-extension
     entitlements:
